@@ -1,25 +1,28 @@
 # Ember-cli-maskmoney
 
-This README outlines the details of collaborating on this Ember addon.
+[jquery-maskmoney](https://github.com/plentz/jquery-maskmoney) wrapper for ember-cli
 
 ## Installation
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
+```bash
+cd your-project-directory
+ember install:addon ember-maskmoney
+```
 
-## Running
+## Usage
 
-* `ember server`
-* Visit your app at http://localhost:4200.
+You can use all options from [docs](http://plentz.github.io/jquery-maskmoney/)
 
-## Running Tests
+```handlebars
+{{mask-money 
+  placeholder=placeholder 
+  number=model.amount 
+  class=inputClass 
+  }}
+```
 
-* `ember test`
-* `ember test --server`
+#### **Important**, use `number` attribute for bindings
 
-## Building
+It extentends `Ember.TextField`, so you can also use all of its options.
 
-* `ember build`
 
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
