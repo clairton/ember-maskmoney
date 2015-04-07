@@ -6,7 +6,7 @@
 
 ```bash
 cd your-project-directory
-ember install:addon ember-maskmoney
+ember install:addon ember-cli-maskmoney
 ```
 
 ## Usage
@@ -18,7 +18,7 @@ You can use all options from [docs](http://plentz.github.io/jquery-maskmoney/)
   placeholder=placeholder 
   number=model.amount 
   class=inputClass 
-  }}
+}}
 ```
 
 #### **Important**, use `number` attribute for bindings
