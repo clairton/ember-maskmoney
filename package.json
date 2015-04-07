@@ -1,7 +1,7 @@
 {
   "name": "ember-cli-maskmoney",
-  "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "version": "0.0.1",
+  "description": "An ember-cli addon for creating money masks on text fields.",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -34,7 +34,9 @@
     "ember-try": "0.0.4"
   },
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "mask-money",
+    "maskmoney"
   ],
   "dependencies": {
     "ember-cli-babel": "^5.0.0"
