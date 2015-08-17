@@ -27,7 +27,11 @@ export default Ember.TextField.extend({
     this.$().maskMoney(this.get('options'));
 
     if (this.get('number') !== undefined) {
-      var val = this.get('number').toString().replace(".", this.get('decimal'));
+      var val = this.get('number');
+      if (!(val instanceof Number)) {
+        val = Number(val);
+      }
+      val = val.toFixed(this.get('precision'));
       this.$().val(val);
       this.$().maskMoney('mask');
     }
