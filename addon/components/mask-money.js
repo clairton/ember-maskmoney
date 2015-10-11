@@ -25,21 +25,19 @@ export default Ember.TextField.extend({
 
   initializeMask: function() {
     this.$().maskMoney(this.get('options'));
-
-    if (this.get('number') !== undefined) {
-      var val = this.get('number');
-      if (!(val instanceof Number)) {
-        val = Number(val);
-      }
-      val = val.toFixed(this.get('precision'));
-      this.$().val(val);
-      this.$().maskMoney('mask');
-    }
+    this.propertyDidChange('number');
   }.on('didInsertElement'),
 
   teardownMask: function() {
     this.$().maskMoney('destroy');
   }.on('willDestroyElement'),
+
+  setMaskedValue: function() {
+    const number = parseFloat(this.get('number') || 0).toFixed(this.get('precision'));
+    const val = number.toString().replace(".", this.get('decimal'));
+    this.$().val(val);
+    this.$().maskMoney('mask');
+  }.observes('number'),
 
   setUnmaskedValue: function() {
     this.set('number', this.$().maskMoney('unmasked')[0]);
