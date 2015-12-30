@@ -10,7 +10,7 @@ export default Ember.TextField.extend({
   allowZero: true,
   allowNegative: false,
 
-  options: function () {
+  options: function() {
     return {
       prefix: this.get('prefix'),
       suffix: this.get('suffix'),
@@ -34,7 +34,7 @@ export default Ember.TextField.extend({
 
   setMaskedValue: function() {
     const number = parseFloat(this.get('number') || 0).toFixed(this.get('precision'));
-    const val = number.toString().replace(".", this.get('decimal'));
+    const val = number.toString().replace('.', this.get('decimal'));
     this.$().val(val);
     this.$().maskMoney('mask');
   }.observes('number'),

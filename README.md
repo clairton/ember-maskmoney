@@ -1,4 +1,4 @@
-# Ember-cli-maskmoney
+# ember-maskmoney
 
 [jquery-maskmoney](https://github.com/plentz/jquery-maskmoney) wrapper for ember-cli
 
@@ -6,7 +6,7 @@
 
 ```bash
 cd your-project-directory
-ember install:addon ember-cli-maskmoney
+ember install ember-maskmoney
 ```
 
 ## Usage
@@ -14,10 +14,10 @@ ember install:addon ember-cli-maskmoney
 You can use all options from [docs](http://plentz.github.io/jquery-maskmoney/)
 
 ```handlebars
-{{mask-money 
-  placeholder=placeholder 
-  number=model.amount 
-  class=inputClass 
+{{input-money
+  placeholder=placeholder
+  number=model.amount
+  class=inputClass
 }}
 ```
 

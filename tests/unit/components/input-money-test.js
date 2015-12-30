@@ -3,9 +3,8 @@ import {
   test
 } from 'ember-qunit';
 
-moduleForComponent('mask-money', {
-  // Specify the other units that are required for this test
-  // needs: ['component:foo', 'helper:bar']
+moduleForComponent('input-money', {
+  unit: true
 });
 
 test('it renders', function(assert) {

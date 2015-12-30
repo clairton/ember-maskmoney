@@ -1,7 +1,7 @@
 module.exports = {
-  normalizeEntityName: function() {},
+  normalizeEntityName() {},
 
-  afterInstall: function() {
+  afterInstall() {
     return this.addBowerPackageToProject('jquery-maskmoney', '~3.0.2');
   }
 };
