@@ -23,6 +23,6 @@ You can use all options from [docs](http://plentz.github.io/jquery-maskmoney/)
 
 #### **Important**, use `number` attribute for bindings
 
-It extentends `Ember.TextField`, so you can also use all of its options.
+It extends `Ember.TextField`, so you can also use all of its options.
 
 
