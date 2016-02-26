@@ -5,7 +5,7 @@ moduleForComponent('input-money', 'Integration | Component | input money', {
   integration: true
 });
 
-test('number', function(assert) {
+test('money', function(assert) {
   this.set('amount', 0);
 
   this.render(hbs`{{input-money number=amount thousands='.' decimal=',' prefix='R$ ' }}`);
@@ -24,4 +24,15 @@ test('number', function(assert) {
   this.$('input').change();
 
   assert.equal(this.get('amount'), 1234.56);
+});
+
+test('without decimals', function(assert) {
+  this.set('amount', 0);
+
+  this.render(hbs`{{input-money number=amount thousands='.' allowDecimal=false decimal='' precision=0 suffix='' preffix='$'}}`);
+
+  this.$('input').val('$100');
+  this.$('input').change();
+
+  assert.equal(this.get('amount'), 100);
 });

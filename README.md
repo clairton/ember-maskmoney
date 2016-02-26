@@ -14,14 +14,15 @@ ember install ember-maskmoney
 You can use all options from [docs](http://plentz.github.io/jquery-maskmoney/)
 
 ```handlebars
-{{input-money
-  placeholder=placeholder
-  number=model.amount
-  class=inputClass
-}}
+{{input-money placeholder=placeholder number=model.amount class=inputClass}}
 ```
 
-#### **Important**, use `number` attribute for bindings
+If you want masked values without decimal, add `allowDecimal=false` attribute.
+```handlebars
+{{input-money number=amount thousands='.' allowDecimal=false decimal='' precision=0 suffix='' preffix='$'}}
+```
+
+#### **Important**, use `number` attribute for bindings.
 
 It extends `Ember.TextField`, so you can also use all of its options.
 
