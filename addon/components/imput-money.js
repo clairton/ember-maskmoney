@@ -11,7 +11,7 @@ export default Ember.TextField.extend({
   allowNegative: false,
   allowDecimal: true,
 
-  options: function() {
+  options: Ember.computed('prefix', 'suffix', 'affixesStay', 'thousands', 'decimal', 'precision', 'allowZero', 'allowNegative', 'allowDecimal', function() {
     return {
       prefix: this.get('prefix'),
       suffix: this.get('suffix'),
@@ -23,29 +23,32 @@ export default Ember.TextField.extend({
       allowNegative: this.get('allowNegative'),
       allowDecimal: this.get('allowDecimal')
     };
-  }.property(),
+  }),
 
-  initializeMask: function() {
-    this.$().maskMoney(this.get('options'));
-    this.propertyDidChange('number');
-  }.on('didInsertElement'),
+  initializeMask: Ember.on('didInsertElement', function() {
+    let self =this;
+    Ember.run.once(() => {
+      self.$().maskMoney(self.get('options'));
+      self.propertyDidChange('number');
+    });
+  }),
 
-  teardownMask: function() {
+  teardownMask: Ember.on('willDestroyElement', function() {
     this.$().maskMoney('destroy');
-  }.on('willDestroyElement'),
+  }),
 
-  setMaskedValue: function() {
+  setMaskedValue: Ember.observer('number', 'precision', 'decimal', function(){
     let number = parseFloat(this.get('number') || 0).toFixed(this.get('precision'));
     let val = number.toString().replace('.', this.get('decimal'));
     this.$().val(val);
     this.$().maskMoney('mask');
-  }.observes('number'),
+  }),
 
-  setUnmaskedValue: function() {
+  setUnmaskedValue: Ember.observer('value', 'allowDecimal', function() {
     if(this.get('allowDecimal')){
       this.set('number', this.$().maskMoney('unmasked')[0]);
     } else {
       this.set('number', this.get('value').replace(/[^0-9]/g, ''));
     }
-  }.observes('value')
+  })
 });
