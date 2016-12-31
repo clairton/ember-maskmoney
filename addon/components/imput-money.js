@@ -37,6 +37,11 @@ export default Ember.TextField.extend({
     this.$().maskMoney('destroy');
   }),
 
+  setMask: Ember.observer('options', function(){
+    this.$().maskMoney('destroy');
+    this.$().maskMoney(this.get('options'));
+  }),
+
   setMaskedValue: Ember.observer('number', 'precision', 'decimal', function(){
     let number = parseFloat(this.get('number') || 0).toFixed(this.get('precision'));
     let val = number.toString().replace('.', this.get('decimal'));
