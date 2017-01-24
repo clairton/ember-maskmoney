@@ -9,6 +9,7 @@ module.exports = {
       // If this flag is present, the addon is being built in FastBoot
       // The jQuery plugin causes FastBoot to crash, so only import in
       // the browser build
+      app.import(app.bowerDirectory + '/jquery-maskmoney/dist/jquery.maskMoney.js');
     }
   }
 };

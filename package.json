@@ -32,8 +32,7 @@
     "ember-cli-uglify": "1.0.1",
     "ember-data": "2.0.0",
     "ember-export-application-global": "^1.0.2",
-    "ember-try": "0.2.9",
-    "jquery-maskmoney": "^3.0.2"
+    "ember-try": "0.2.9"
   },
   "keywords": [
     "ember-addon",
