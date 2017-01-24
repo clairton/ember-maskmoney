@@ -1,4 +1,4 @@
-# ember-maskmoney
+# ember-maskmoney [![Build Status](https://travis-ci.org/clairton/ember-maskmoney.svg?branch=master)](https://travis-ci.org/clairton/ember-maskmoney)
 
 [jquery-maskmoney](https://github.com/plentz/jquery-maskmoney) wrapper for ember-cli
 
