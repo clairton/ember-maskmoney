@@ -29,7 +29,9 @@ export default Ember.TextField.extend({
     let self =this;
     Ember.run.once(() => {
       self.$().maskMoney(self.get('options'));
-      self.propertyDidChange('number');
+      if(self.get('number')){
+        self.propertyDidChange('number');
+      }
     });
   }),
 
