@@ -1,4 +1,5 @@
 bower_components/
+/config/ember-try.js
 tests/
 tmp/
 
@@ -11,3 +12,8 @@ tmp/
 bower.json
 Brocfile.js
 testem.json
+
+# ember-try
+.node_modules.ember-try/
+bower.json.ember-try
+package.json.ember-try
