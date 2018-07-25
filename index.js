@@ -8,8 +8,9 @@ module.exports = {
   name: 'ember-maskmoney',
   included: function(app) {
     this._super.included(app);
-    app.import('vendor/jquery.maskMoney.min.js');
-
+    if (!process.env.EMBER_CLI_FASTBOOT) {
+      app.import('vendor/jquery.maskMoney.min.js');
+    }
   },
   treeForVendor: function() {
     var jqueryMaskMoneyJSPath = path.join(this.app.project.root, 'node_modules', 'jquery-maskmoney', 'dist');
