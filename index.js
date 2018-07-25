@@ -1,15 +1,21 @@
 /* jshint node: true */
 'use strict';
 
+var path = require('path');
+var Funnel = require('broccoli-funnel');
+
 module.exports = {
   name: 'ember-maskmoney',
-  included(app) {
+  included: function(app) {
     this._super.included(app);
-    if (!process.env.EMBER_CLI_FASTBOOT) {
-      // If this flag is present, the addon is being built in FastBoot
-      // The jQuery plugin causes FastBoot to crash, so only import in
-      // the browser build
-      app.import(app.bowerDirectory + '/jquery-maskmoney/dist/jquery.maskMoney.js');
-    }
-  }
+    app.import('vendor/jquery.maskMoney.min.js');
+
+  },
+  treeForVendor(tree) {
+    let jqueryMaskMoneyJSPath = path.join(this.app.project.root, 'node_modules', 'jquery-maskmoney', 'dist');
+    let vendorTree = new Funnel(jqueryMaskMoneyJSPath, {
+      files: ['jquery.maskMoney.min.js']
+    });
+    return vendorTree;
+  },
 };

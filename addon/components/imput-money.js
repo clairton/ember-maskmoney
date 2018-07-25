@@ -1,6 +1,8 @@
-import Ember from 'ember';
+import { once } from '@ember/runloop';
+import { observer, computed } from '@ember/object';
+import TextField from '@ember/component/text-field';
 
-export default Ember.TextField.extend({
+export default TextField.extend({
   prefix: '',
   suffix: '',
   affixesStay: false,
@@ -11,7 +13,7 @@ export default Ember.TextField.extend({
   allowNegative: false,
   allowDecimal: true,
 
-  options: Ember.computed('prefix', 'suffix', 'affixesStay', 'thousands', 'decimal', 'precision', 'allowZero', 'allowNegative', 'allowDecimal', function() {
+  options: computed('prefix', 'suffix', 'affixesStay', 'thousands', 'decimal', 'precision', 'allowZero', 'allowNegative', 'allowDecimal', function() {
     return {
       prefix: this.get('prefix'),
       suffix: this.get('suffix'),
@@ -25,33 +27,34 @@ export default Ember.TextField.extend({
     };
   }),
 
-  initializeMask: Ember.on('didInsertElement', function() {
-    let self =this;
-    Ember.run.once(() => {
-      self.$().maskMoney(self.get('options'));
-      if((self.get('allowZero') && (self.get('number') !== undefined)) || self.get('number')){  
-        self.propertyDidChange('number');
+  didInsertElement() {
+    once(() => {
+      this.$().maskMoney(this.get('options'));
+      if((this.get('allowZero') && (this.get('number') !== undefined)) || this.get('number')){
+        this.propertyDidChange('number');
       }
     });
-  }),
+    this._super(...arguments);
+  },
 
-  teardownMask: Ember.on('willDestroyElement', function() {
+  willDestroyElement() {
     this.$().maskMoney('destroy');
-  }),
+    this._super(...arguments);
+  },
 
-  setMask: Ember.observer('options', function(){
+  setMask: observer('options', function(){
     this.$().maskMoney('destroy');
     this.$().maskMoney(this.get('options'));
   }),
 
-  setMaskedValue: Ember.observer('number', 'precision', 'decimal', function(){
+  setMaskedValue: observer('number', 'precision', 'decimal', function(){
     let number = parseFloat(this.get('number') || 0).toFixed(this.get('precision'));
     let val = number.toString().replace('.', this.get('decimal'));
     this.$().val(val);
     this.$().maskMoney('mask');
   }),
 
-  setUnmaskedValue: Ember.observer('value', 'allowDecimal', function() {
+  setUnmaskedValue: observer('value', 'allowDecimal', function() {
     if(this.get('allowDecimal')){
       this.set('number', this.$().maskMoney('unmasked')[0]);
     } else {

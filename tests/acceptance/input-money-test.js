@@ -1,15 +1,17 @@
-import Ember from "ember";
-import { moduleFor, test } from 'ember-qunit';
+import { run } from '@ember/runloop';
+import { module, test } from 'ember-qunit';
 import startApp from '../helpers/start-app';
 
-var App;
+let application;
 
-moduleFor('component:input-money', "Acceptance: Input Money", {
-  beforeEach: function(){
-    App = startApp();
+module('Acceptance: Input Money', {
+  beforeEach() {
+    application = startApp();
   },
-  afterEach: function(){
-    Ember.run(App, 'destroy');
+  afterEach() {
+    if (application) {
+      run(application, 'destroy');
+    }
   }
 });
 
