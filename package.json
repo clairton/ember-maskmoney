@@ -1,6 +1,6 @@
 {
   "name": "ember-maskmoney",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "An ember-cli addon for creating money masks on text fields.",
   "directories": {
     "doc": "doc",
@@ -9,7 +9,8 @@
   "scripts": {
     "start": "ember server",
     "build": "ember build",
-    "test": "ember try:each"
+    "test": "ember try:each",
+    "lint:js": "eslint ./*.js addon addon-test-support app config lib server test-support"
   },
   "repository": "https://github.com/clairton/ember-maskmoney",
   "engines": {

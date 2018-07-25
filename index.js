@@ -11,9 +11,9 @@ module.exports = {
     app.import('vendor/jquery.maskMoney.min.js');
 
   },
-  treeForVendor(tree) {
-    let jqueryMaskMoneyJSPath = path.join(this.app.project.root, 'node_modules', 'jquery-maskmoney', 'dist');
-    let vendorTree = new Funnel(jqueryMaskMoneyJSPath, {
+  treeForVendor: function() {
+    var jqueryMaskMoneyJSPath = path.join(this.app.project.root, 'node_modules', 'jquery-maskmoney', 'dist');
+    var vendorTree = new Funnel(jqueryMaskMoneyJSPath, {
       files: ['jquery.maskMoney.min.js']
     });
     return vendorTree;
