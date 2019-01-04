@@ -16,4 +16,8 @@ module.exports = {
     browserVendorLib = map(browserVendorLib, (content) => `if (typeof FastBoot === 'undefined') { ${content} }`);
     return defaultTree ? new mergeTrees([defaultTree, browserVendorLib]) : browserVendorLib;
   },
+  included(app) {
+    this._super.included.apply(this, arguments);
+    app.import('vendor/jquery.maskMoney.min.js');
+  }
 };
