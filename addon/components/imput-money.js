@@ -31,7 +31,7 @@ export default TextField.extend({
     once(() => {
       this.$().maskMoney(this.get('options'));
       if((this.get('allowZero') && (this.get('number') !== undefined)) || this.get('number')){
-        this.propertyDidChange('number');
+        this.notifyPropertyChange('number');
       }
     });
     this._super(...arguments);
