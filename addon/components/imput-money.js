@@ -42,13 +42,9 @@ export default TextField.extend({
     this._super(...arguments);
   },
 
-  refresh: observer('options', function() {
-    this.$().maskMoney('mask');
-  }),
-
   setMask: observer('options', function(){
-    this.$().maskMoney('destroy');
     this.$().maskMoney(this.get('options'));
+    this.$().maskMoney('mask');
   }),
 
   setMaskedValue: observer('number', 'precision', 'decimal', function(){
