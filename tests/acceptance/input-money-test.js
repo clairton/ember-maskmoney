@@ -1,3 +1,4 @@
+import { fillIn, find, visit } from '@ember/test-helpers';
 import { run } from '@ember/runloop';
 import { module, test } from 'ember-qunit';
 import startApp from '../helpers/start-app';
@@ -18,7 +19,7 @@ module('Acceptance: Input Money', {
 test('Value', function(assert) {
   visit('/').then(() => {
     fillIn('input#valor', 'R$ 1.234,56').then(() => {
-      assert.equal(find('.value').text(), '1234.56');
+      assert.equal(find('.value').textContent, '1234.56');
     });
   });
 });

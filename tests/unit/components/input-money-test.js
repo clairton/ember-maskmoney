@@ -1,20 +1,18 @@
-import {
-  moduleForComponent,
-  test
-} from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupTest } from 'ember-qunit';
 
-moduleForComponent('input-money', {
-  unit: true
-});
+module('input-money', function(hooks) {
+  setupTest(hooks);
 
-test('it renders', function(assert) {
-  assert.expect(2);
+  test('it renders', function(assert) {
+    assert.expect(2);
 
-  // Creates the component instance
-  var component = this.subject();
-  assert.equal(component._state, 'preRender');
+    // Creates the component instance
+    var component = this.owner.factoryFor('component:input-money').create();
+    assert.equal(component._state, 'preRender');
 
-  // Renders the component to the page
-  this.render();
-  assert.equal(component._state, 'inDOM');
+    // Renders the component to the page
+    this.render();
+    assert.equal(component._state, 'inDOM');
+  });
 });
